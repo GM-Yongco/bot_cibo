@@ -1,0 +1,12 @@
+__pycache__
+./.vscode
+settings.json
+tempCodeRunnerFile.py
+
+_.py
+test.py
+
+TOKEN_EUNUS.txt
+TOKEN_VESSEL.txt
+USER_ALPHA.txt
+CHANNEL_UPDATE.txt
