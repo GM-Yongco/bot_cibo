@@ -1,22 +1,40 @@
-# Description     : Code that will impress u ;)
-# Author          : G.M. Yongco #BeSomeoneWhoCanStandByShinomiya
-# Date            : ur my date uwu
-
-# ========================================================================
-# IMOPRTS
-# ========================================================================
+# Author			: G.M. Yongco #BeSomeoneWhoCanStandByShinomiya
+# Date				: ur my date uwu
+# Description		: main discord bot loop
+# HEADERS ================================================================
 import discord
 from discord.ext import commands
 from discord import app_commands
 
+import io
+
+import asyncio
 from random import randint as ri
 
+import misc_functions as mf
+
 # ========================================================================
-# FUNCTIONS
+# GLOBAL
 # ========================================================================
 
-async def send_interaction_message(interaction: discord.Interaction, message:str):
-	await interaction.response.send_message(f"{message}")
+bot_info:dict = mf.reference_read()
+
+# ========================================================================
+# DISCORD FUNCTIONS
+# ========================================================================
+async def channel_message(
+		bot:discord.Client,
+		channel_id:int = bot_info["log_channel"],
+		user_id:int = bot_info["users"]["Veee"],
+		message:str = "default message"
+	) -> None:
+	
+	text_channel:discord.channel.TextChannel = bot.get_channel(channel_id)
+	user:discord.User = await bot.fetch_user(user_id)
+
+	message = f"{user.mention} \n {message}"
+	await text_channel.send(message)
+	print("message sent")
 
 # ========================================================================
 # MAIN
@@ -27,10 +45,10 @@ def run_discord_bot():
 	# ====================================================================
 	# INITIALIZATION
 	# ====================================================================
-	TOKEN = open("REFERENCES/TOKEN_VESSEL.txt", "r").read()
+	TOKEN = bot_info["bot_tokens"]["Eunus"]
 
-	intents = discord.Intents.all()
-	bot = commands.Bot(command_prefix='', intents=intents)
+	intents:discord.Intents = discord.Intents.all()
+	bot:discord.Client = commands.Bot(command_prefix='', intents=intents)
 
 	# ====================================================================
 	# DEFAULT EVENTS
@@ -38,11 +56,23 @@ def run_discord_bot():
 	@bot.event
 	async def on_ready():
 		print(f'{bot.user} is now running')
-		synced = await bot.tree.sync()
+		synced:list = await bot.tree.sync()
+		
 		print(f"Synched {len(synced)} commands")
+		for index, command in enumerate(synced):
+			print(f"{index + 1:3} : {command}")
 
-	@bot.event														
-	async def on_message(message):
+		#on ready tasks
+
+		await channel_message(bot = bot)
+
+		# status_check:asyncio.Task = asyncio.create_task(mf.time_loop(delay_seconds=4))
+		# await asyncio.gather(status_check)
+	
+	# ====================================================================
+	
+	@bot.event	
+	async def on_message(message:discord.message.Message):
 		if(message.author != bot.user):
 			username        = str(message.author)	
 			channel         = str(message.channel)
@@ -68,7 +98,7 @@ def run_discord_bot():
 	@bot.tree.command(name = "greet_me", description = "will greet you based on the number you give")
 	async def greet_me(interaction: discord.Interaction, input:int):
 		print("greet_me command")
-		message = ["aloha", "greetings, adverturer", "salutations"]
+		message:list = ["aloha", "greetings, adverturer", "salutations"]
 		await interaction.response.send_message(message[ri(0, len(message) - 1)])
 
 	# ====================================================================
@@ -77,8 +107,8 @@ def run_discord_bot():
 	async def motivate_me(interaction: discord.Interaction):
 		print("motivate_me command")
 
-		messages = []
-		file_ptr = open("REFERENCES/motivation.txt", "r")
+		messages:list = []
+		file_ptr:io.TextIOWrapper = open("REFERENCES/motivation.txt", "r")
 		for line in file_ptr:
 			if line[0] not in ['#', '\n']:									#if not line that is empty or comment in the text file
 				messages.append((line.strip('\n')).replace(rf"\n", "\n")) 	#formatting; removing the end line \n and turing the raw text"\n" to new line characters
