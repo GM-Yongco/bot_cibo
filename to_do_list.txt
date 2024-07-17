@@ -1,0 +1,2 @@
+make logging every 5 minutes
+make weekly birthday thing from database
