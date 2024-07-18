@@ -1,2 +1,4 @@
 make logging every 5 minutes
+- seconds till the 5 miute mark
+- wait for 5 minutes loop
 make weekly birthday thing from database
