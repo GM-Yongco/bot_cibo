@@ -58,10 +58,11 @@ class DiscordBot():
 			json_details:dict = json.load(file)
 			file.close()
 
-			self.TOKEN = json_details["bot_tokens"]["Eunus"]
-			self.LOG_CHANNEL_ID = json_details["log_channel_id"]
+			self.TOKEN:str = json_details["bot_tokens"]["Eunus"]
+			self.LOG_CHANNEL_ID:str = json_details["log_channel_id"]
 			print(f"function : get_references success")
 		except Exception as e:
+			print(f"function : get_references failed")
 			print(e)
 
 	def add_functions(self, func:Callable):
@@ -81,7 +82,7 @@ class DiscordBot():
 
 	def define_log_channel(self)->None:
 		try:
-			self.LOG_CHANNEL = self.bot.get_channel(self.LOG_CHANNEL_ID)
+			self.LOG_CHANNEL = self.bot.get_channel(int(self.LOG_CHANNEL_ID))
 			print(f"function : define_log_channel success")
 		except Exception as e:
 			print(f"function : define_log_channel\n{e}")
@@ -97,10 +98,16 @@ class DiscordBot():
 		
 		@self.bot.event
 		async def on_ready():
+			# get channel can only be used after the bot has been ready
+			self.define_log_channel() 
+
+			# synch the current commands
 			synced:List[discord.app_commands.models.AppCommand] = await self.bot.tree.sync()
 			print(f"Synched {len(synced)} commands:")
 			for index, command in enumerate(synced):
 				print(f"{index + 1:3} : {command}")
+
+			# ready
 			print(f"{self.bot.user} is now ready")
 			print("-" * 50)
 
@@ -138,14 +145,12 @@ class DiscordBot():
 		# always need to be done first and the order is important
 		self.get_references()
 		self.define_bot()
-		
-		# change if u want
-		self.add_functions(self.define_log_channel)
 
 		# can be overwritten
 		self.add_functions(self.define_bot_events)
 		self.add_functions(self.define_bot_commands)
 
+		# make sure the functions here are okay before the bot is ready/connected
 		for index, functions in enumerate(self.additional_functions):
 			try:
 				functions()

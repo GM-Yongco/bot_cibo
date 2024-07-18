@@ -3,18 +3,7 @@
 # Date            : ur my date uwu
 # HEADERS ================================================================
 
-from discord_class import *
-
-from commands_motivate import define_commnands_motivate
-
-# ========================================================================
-# NEW CLASS
-# ========================================================================
-
-class EunusBot(DiscordBot):
-
-	def define_bot_commands(self)->None:
-		define_commnands_motivate(self.bot)
+from class_Eunus import EunusBot
 
 # ========================================================================
 # TEST 
