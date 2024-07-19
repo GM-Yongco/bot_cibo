@@ -11,10 +11,11 @@ from discord import app_commands
 
 # type definitions
 import io
-import json
 from typing import List, Callable
 
 # built in stuff
+import os
+import json
 
 class DiscordBot():
 	def __init__(
@@ -157,7 +158,15 @@ class DiscordBot():
 			except Exception as e:
 				print(f"{index} :\n{e}")
 
-		self.bot.run(self.TOKEN)
+		
+		try:
+			self.bot.run(self.TOKEN)
+		except Exception as e:
+			print('='*50)
+			print(e)
+			print('='*50)
+			os.system("python function_restart.py")
+			exit()
 
 # ========================================================================
 # TESTS
