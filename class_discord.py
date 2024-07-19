@@ -24,7 +24,7 @@ class DiscordBot():
 
 		self.TOKEN:str = TOKEN
 		self.LOG_CHANNEL_ID:str = LOG_CHANNEL_ID
-		self.additional_functions:List[Callable] = []
+		self.initialization_functions:List[Callable] = []
 	
 		self.LOG_CHANNEL:discord.TextChannel
 		self.bot:discord.ext.commands.bot.Bot
@@ -33,12 +33,12 @@ class DiscordBot():
 		ret_val:dict = {
 			"BOT_NAME" : str(self.bot.user), 
 			"LOG_CHANNEL_ID" : str(self.bot.get_channel(int(self.LOG_CHANNEL_ID))),
-			"additional_functions" : []
+			"initialization_functions" : []
 		}
 
-		additional_functions:List[str] = ret_val["additional_functions"]
-		for functions in self.additional_functions:
-			additional_functions.append(functions.__name__)
+		initialization_functions:List[str] = ret_val["initialization_functions"]
+		for functions in self.initialization_functions:
+			initialization_functions.append(functions.__name__)
 		print(f"function : __dict__ success")
 
 		return ret_val
@@ -64,10 +64,6 @@ class DiscordBot():
 		except Exception as e:
 			print(f"function : get_references failed")
 			print(e)
-
-	def add_functions(self, func:Callable):
-		self.additional_functions.append(func)
-		print(f"function : add_functions success")
 
 	# ====================================================================
 	# DISCORD FUNCTIONS
@@ -121,12 +117,12 @@ class DiscordBot():
 		async def greet_me(interaction: discord.Interaction, message:str = ""):
 			print("command : greet_me ")
 			try:
-				await interaction.response.send_message(f"get greeted :P - {message}")
+				await interaction.response.send_message(f"get greeted :P\n{message}")
 			except Exception as e:
 				await interaction.response.send_message(f"{e}")
 
 		
-		@self.bot.tree.command(name = "give_deets", description = "will give you a random link of motivation")
+		@self.bot.tree.command(name = "give_deets", description = "gives attributes of the bot")
 		async def give_deets(interaction: discord.Interaction):
 			print("command : give_deets ")
 			try:
@@ -147,16 +143,17 @@ class DiscordBot():
 		self.define_bot()
 
 		# can be overwritten
-		self.add_functions(self.define_bot_events)
-		self.add_functions(self.define_bot_commands)
+		# will be executed first so the new events will override the old ones
+		self.initialization_functions.insert(0, self.define_bot_events)
+		self.initialization_functions.insert(0, self.define_bot_commands)
 
 		# make sure the functions here are okay before the bot is ready/connected
-		for functions in self.additional_functions:
+		for functions in self.initialization_functions:
 			try:
 				functions()
-				print(f"additional_functions : {functions.__name__} - success")
+				print(f"initialization_functions : {functions.__name__} - success")
 			except Exception as e:
-				print(f"additional_functions : {functions.__name__} - ERROR\n\t{e}")
+				print(f"initialization_functions : {functions.__name__} - ERROR\n\t{e}")
 
 		self.bot.run(self.TOKEN)
 

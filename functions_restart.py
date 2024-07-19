@@ -20,7 +20,7 @@ def start_python_program(file_name:str = "main.py", wait_seconds:int = 60)->None
 
 		os.system(f"python {file_name}")
 	except Exception as e:
-		start_python_program(file_name = "function_restart.py", wait_seconds = 30)
+		start_python_program(file_name = "function_restart.py", wait_seconds = wait_seconds*2)
 	exit(0)
 
 # ========================================================================

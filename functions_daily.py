@@ -46,11 +46,13 @@ async def bot_time_log(channel:discord.TextChannel, interval_seconds:int = MINUT
 
 	# sleeps so that the log update will match the intervals
 	# ex: if interval is 5 mins, log will happen in a minute divisible by 5
-	await asyncio.sleep(interval_synchronize(interval_seconds = interval_seconds))
+	sync_time:int = interval_synchronize(interval_seconds = interval_seconds)
+	await channel.send(f"```{'initial sync time':15}:{sync_time}```")
+	await asyncio.sleep(sync_time)
 
 	while True:
-		up_time: str = f"{'up time':20}:{cycle_num}"
-		currrent_time : str = f"{'cycle number':20}:{datetime.now().strftime('%Y|%d|%M - %H:%M:%S')}"
+		up_time: str = f"{'up time':15}:{cycle_num}"
+		currrent_time : str = f"{'cycle number':15}:{datetime.now().strftime('%H:%M:%S')}"
 		await channel.send(f"```I am still alive\n{up_time}\n{currrent_time}```")
 
 		if cycle_num%10 == 0:

@@ -7,16 +7,16 @@ from class_discord import *
 
 import asyncio
 from functions_daily import bot_time_log
+from functions_restart import start_python_program
 from commands_motivate import define_commnands_motivate
 
-import os
 
 # ========================================================================
 # NEW CLASS
 # ========================================================================
 
 class EunusBot(DiscordBot):
-	def define_new_bot_events(self) -> None:
+	def define_on_ready(self) -> None:
 		@self.bot.event
 		async def on_ready():
 			# get channel can only be used after the bot has been ready
@@ -36,32 +36,41 @@ class EunusBot(DiscordBot):
 			bot_log = asyncio.create_task(bot_time_log(channel = self.LOG_CHANNEL, interval_seconds = 300))
 			await asyncio.gather(bot_log)
 
+	# ====================================================================
+	
+	def define_on_disconnect(self) -> None:
 		@self.bot.event
 		async def on_disconnect():
 			print(f"{self.bot.user} has disconnected, initializing restart")
-			os.system("python function_restart.py")
-			exit()
+			self.restart()
 
 	# ====================================================================
 
+	# an override
 	def define_bot_commands(self)->None:
 		define_commnands_motivate(self.bot)
 
+	# new functions
+	def restart(self)->None:
+		start_python_program(file_name="main.py", wait_seconds=60)
+		exit(0)
+
 	# ====================================================================
 
+	# an override
 	def run(self):
 		self.get_references()
 		self.define_bot()
 
-		self.add_functions(self.define_bot_events)
-		self.add_functions(self.define_bot_commands)
+		self.initialization_functions.insert(0, self.define_bot_events)
+		self.initialization_functions.insert(0, self.define_bot_commands)
 
-		for functions in self.additional_functions:
+		for functions in self.initialization_functions:
 			try:
 				functions()
-				print(f"additional_functions : {functions.__name__} - success")
+				print(f"initialization_functions : {functions.__name__} - success")
 			except Exception as e:
-				print(f"additional_functions : {functions.__name__} - ERROR\n\t{e}")
+				print(f"initialization_functions : {functions.__name__} - ERROR\n\t{e}")
 		
 		# ================================================================
 		# the new part
