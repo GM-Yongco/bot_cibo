@@ -9,6 +9,8 @@ import asyncio
 from functions_daily import bot_time_log
 from commands_motivate import define_commnands_motivate
 
+import os
+
 # ========================================================================
 # NEW CLASS
 # ========================================================================
@@ -35,8 +37,14 @@ class EunusBot(DiscordBot):
 			print("-" * 50)
 
 			# tasks for bot after setup
-			bot_log = asyncio.create_task(bot_time_log(channel = self.LOG_CHANNEL, interval_seconds = 10))
+			bot_log = asyncio.create_task(bot_time_log(channel = self.LOG_CHANNEL, interval_seconds = 300))
 			await asyncio.gather(bot_log)
+		
+		@self.bot.event
+		async def on_disconnect():
+			print(f"{self.bot.user} has disconnected, initializing restart")
+			os.system("python function_restart.py")
+			exit()
 
 	# ====================================================================
 
