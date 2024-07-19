@@ -149,24 +149,17 @@ class DiscordBot():
 
 		# can be overwritten
 		self.add_functions(self.define_bot_events)
-		self.add_functions(self.define_bot_commands)
+		# self.add_functions(self.define_bot_commands)
 
 		# make sure the functions here are okay before the bot is ready/connected
-		for index, functions in enumerate(self.additional_functions):
+		for functions in self.additional_functions:
 			try:
 				functions()
+				print(f"additional_functions : {functions.__name__} - success")
 			except Exception as e:
-				print(f"{index} :\n{e}")
+				print(f"additional_functions : {functions.__name__} - ERROR\n\t{e}")
 
-		
-		try:
-			self.bot.run(self.TOKEN)
-		except Exception as e:
-			print('='*50)
-			print(e)
-			print('='*50)
-			os.system("python function_restart.py")
-			exit()
+		self.bot.run(self.TOKEN)
 
 # ========================================================================
 # TESTS
