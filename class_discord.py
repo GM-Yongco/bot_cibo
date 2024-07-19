@@ -14,7 +14,6 @@ import io
 from typing import List, Callable
 
 # built in stuff
-import os
 import json
 
 class DiscordBot():
@@ -149,7 +148,7 @@ class DiscordBot():
 
 		# can be overwritten
 		self.add_functions(self.define_bot_events)
-		# self.add_functions(self.define_bot_commands)
+		self.add_functions(self.define_bot_commands)
 
 		# make sure the functions here are okay before the bot is ready/connected
 		for functions in self.additional_functions:

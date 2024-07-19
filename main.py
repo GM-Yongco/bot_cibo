@@ -11,4 +11,5 @@ from class_Eunus import EunusBot
 
 if __name__ == '__main__':
 	bot:EunusBot = EunusBot()
+	bot.add_functions(bot.define_new_bot_events)
 	bot.run()
