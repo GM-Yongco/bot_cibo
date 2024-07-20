@@ -1,4 +1,9 @@
 make logging every 5 minutes
 - seconds till the 5 miute mark
 - wait for 5 minutes loop
+- corrector for timer every 10 cycles
+
+make motivate me a datbase
 make weekly birthday thing from database
+
+fix disconnect timer

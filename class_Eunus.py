@@ -8,14 +8,16 @@ from class_discord import *
 import asyncio
 from functions_daily import bot_time_log
 from functions_restart import start_python_program
-from commands_motivate import define_commnands_motivate
-
+from commands_motivate import define_commands_motivate
+from commands_channels import define_commands_channels
 
 # ========================================================================
 # NEW CLASS
 # ========================================================================
 
 class EunusBot(DiscordBot):
+	
+	# new functions
 	def define_on_ready(self) -> None:
 		@self.bot.event
 		async def on_ready():
@@ -38,6 +40,7 @@ class EunusBot(DiscordBot):
 
 	# ====================================================================
 	
+	# new functions
 	def define_on_disconnect(self) -> None:
 		@self.bot.event
 		async def on_disconnect():
@@ -48,7 +51,8 @@ class EunusBot(DiscordBot):
 
 	# an override
 	def define_bot_commands(self)->None:
-		define_commnands_motivate(self.bot)
+		define_commands_motivate(self.bot)
+		define_commands_channels(self.bot)
 
 	# new functions
 	def restart(self)->None:

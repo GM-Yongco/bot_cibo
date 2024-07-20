@@ -17,7 +17,7 @@ from random import randint as ri
 # FUNCTIONS 
 # ========================================================================
 
-def define_commnands_motivate(bot:discord.ext.commands.bot.Bot) -> (None):
+def define_commands_motivate(bot:discord.ext.commands.bot.Bot) -> None:
 	# ================================================================
 
 	@bot.tree.command(name = "motivate_me", description = "will give you a random link of motivation")
