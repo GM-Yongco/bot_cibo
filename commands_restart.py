@@ -4,11 +4,31 @@
 # Real Description	: for restarting the bot when necessary
 # HEADERS ================================================================
 
+# discord stuff
+import discord
+import discord.ext.commands
+
+# built in
 import os
 import time
 
 # ========================================================================
 # FUNCTIONS 
+# ========================================================================
+
+def restart_file(file_name:str = "main.py", wait_seconds:int = 30) -> None:
+	start_python_program(file_name = file_name, wait_seconds = wait_seconds)
+	exit(0)
+
+# ========================================================================
+
+def define_commands_restart(bot:discord.ext.commands.bot.Bot) -> None:
+
+	@bot.tree.command(name = "restart", description = "will give you a random link of motivation")
+	async def restart(interaction: discord.Interaction):
+		print("command : restart")
+		await bot.close()
+
 # ========================================================================
 
 def start_python_program(file_name:str = "main.py", wait_seconds:int = 60)->None:

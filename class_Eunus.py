@@ -7,7 +7,7 @@ from class_discord import *
 
 import asyncio
 from functions_daily import bot_time_log
-from functions_restart import start_python_program
+from commands_restart import define_commands_restart, restart_file
 from commands_motivate import define_commands_motivate
 from commands_channels import define_commands_channels
 
@@ -45,19 +45,16 @@ class EunusBot(DiscordBot):
 		@self.bot.event
 		async def on_disconnect():
 			print(f"{self.bot.user} has disconnected, initializing restart")
-			self.restart()
+			await self.bot.close()
+			restart_file()
 
 	# ====================================================================
 
 	# an override
 	def define_bot_commands(self)->None:
+		define_commands_restart(self.bot)
 		define_commands_motivate(self.bot)
 		define_commands_channels(self.bot)
-
-	# new functions
-	def restart(self)->None:
-		start_python_program(file_name="main.py", wait_seconds=60)
-		exit(0)
 
 	# ====================================================================
 
@@ -86,5 +83,5 @@ class EunusBot(DiscordBot):
 			print('='*50)
 			print(e)
 			print('='*50)
-			self.restart()
+			restart_file()
 			exit()
