@@ -24,9 +24,10 @@ def restart_file(file_name:str = "main.py", wait_seconds:int = 30) -> None:
 
 def define_commands_restart(bot:discord.ext.commands.bot.Bot) -> None:
 
-	@bot.tree.command(name = "restart", description = "will give you a random link of motivation")
+	@bot.tree.command(name = "restart", description = "restarts the bot")
 	async def restart(interaction: discord.Interaction):
 		print("command : restart")
+		await interaction.response.send_message("restarting in a few seconds")
 		await bot.close()
 
 # ========================================================================
