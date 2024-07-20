@@ -4,14 +4,15 @@
 # Real Description: place to define groups of commands
 # HEADERS ================================================================
 
+# discord stuff
 import discord
 import discord.ext.commands
 from discord import app_commands
 
+# built in
 import io
 from typing import List
-
-from random import randint as ri
+from random import choice
 
 # ========================================================================
 # FUNCTIONS 
@@ -31,7 +32,7 @@ def define_commands_motivate(bot:discord.ext.commands.bot.Bot) -> None:
 				messages.append((line.strip('\n')).replace(rf"\n", "\n")) 	#formatting; removing the end line \n and turing the raw text"\n" to new line characters
 		file_ptr.close()
 
-		await interaction.response.send_message(messages[ri(0, len(messages) - 1)])
+		await interaction.response.send_message(choice(messages))
 	
 	# ====================================================================
 
@@ -45,10 +46,3 @@ def define_commands_motivate(bot:discord.ext.commands.bot.Bot) -> None:
 		file_ptr.close()
 
 		await interaction.response.send_message("done")
-
-# ========================================================================
-# TEST 
-# ========================================================================
-
-if __name__ == '__main__':
-	pass
