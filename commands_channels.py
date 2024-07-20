@@ -66,7 +66,7 @@ def define_commands_channels(bot:discord.ext.commands.bot.Bot) -> None:
 			await interaction.response.send_message(f"deletion in {delay_seconds}")
 
 			await interaction.channel.clone()
-			for i in range(delay_seconds + 1, 0, -1):
+			for i in range(delay_seconds, 0, -1):
 				time.sleep(1)
 				await interaction.channel.send(i)
 			await interaction.channel.delete()
