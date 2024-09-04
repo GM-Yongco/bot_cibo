@@ -51,8 +51,8 @@ async def bot_time_log(channel:discord.TextChannel, interval_seconds:int = MINUT
 	await asyncio.sleep(sync_time)
 
 	while True:
-		up_time: str = f"{'up time':15}:{cycle_num}"
-		currrent_time : str = f"{'cycle number':15}:{datetime.now().strftime('%H:%M:%S')}"
+		up_time: str = f"{'cycle number':15}:{cycle_num}"
+		currrent_time : str = f"{'up time':15}:{datetime.now().strftime('%H:%M:%S')}"
 		await channel.send(f"```I am still alive\n{up_time}\n{currrent_time}```")
 
 		if cycle_num%10 == 0:
