@@ -21,29 +21,20 @@ class functionalityRestart():
 	
 	will_restart:bool = False
 
-	def check_os(self):
-		ret_val:str = "unknonwn_os"
-		if platform.system() == 'Windows':
-			ret_val = "windows"
-		elif platform.system() == 'Linux':
-			ret_val = "linux"
-		elif platform.system() == 'Darwin':
-			ret_val = "macos"
-		print(f"current working operating system	 is {ret_val}")
-		return ret_val
-
 	def restart(self) -> None:
-		print(f"starting in:")
-		wait_seconds = 10
-		for i in range(wait_seconds, 0, -1):
-			print(i)
-			time.sleep(1)
+		working_os:str = "unknonwn_os"
+		if platform.system() == 'Windows':
+			working_os = "windows"
+		elif platform.system() == 'Linux':
+			working_os = "linux"
+		elif platform.system() == 'Darwin':
+			working_os = "macos"
+		print(f"current working operating system is {working_os}")
 
-		operating_system:str = self.check_os()
-		if operating_system == "windows":
-			os.system("python main.py")
-		elif operating_system == "linux":
-			os.system("python3 main.py")
+		if working_os == "windows":
+			os.system("python restart.py")
+		elif working_os == "linux":
+			os.system("python3 restart.py")
 
 	# ========================================================================
 
