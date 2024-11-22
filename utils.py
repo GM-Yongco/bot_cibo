@@ -1,3 +1,4 @@
 def section(section_name:str = "SECTION") -> None:
-	section_name = f"\n {section_name} {'-' * (40 - len(section_name))}\n"
+	print("-" * 50)
 	print(section_name)
+	print("-" * 50)

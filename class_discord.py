@@ -148,8 +148,8 @@ class DiscordBot():
 		self.define_bot()
 
 		# order shouldnt matter here
-		self.initialization_functions.append(self.define_bot_events)
-		self.initialization_functions.append(self.define_bot_commands)
+		self.define_bot_events()
+		self.define_bot_commands()
 
 		# makes sure the functions here are okay before the bot is ready/connected
 		for functions in self.initialization_functions:

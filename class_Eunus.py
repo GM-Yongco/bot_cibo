@@ -39,7 +39,7 @@ class EunusBot(DiscordBot):
 			# announcing ones Awakening
 			message:str = f"{self.bot.user} is now ready"
 			section(message)
-			self.LOG_CHANNEL.send(message)
+			await self.LOG_CHANNEL.send(f"```{message}```")
 
 			# timed tasks for bot at startup
 			# bot_log = asyncio.create_task(bot_time_log(channel = self.LOG_CHANNEL, interval_seconds = 300))
