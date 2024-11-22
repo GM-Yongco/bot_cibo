@@ -5,7 +5,6 @@
 
 from class_discord import *
 
-import asyncio
 from util_restart import functionalityRestart
 from utils import section
 from functions_daily import bot_time_log

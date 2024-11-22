@@ -8,7 +8,6 @@
 import discord
 import discord.ext.commands
 from discord.ext import commands
-from discord import app_commands
 
 # type definitions
 import io

@@ -1,7 +1,7 @@
-# Description     : Code that will impress u ;)
-# Author          : G.M. Yongco #BeSomeoneWhoCanStandByShinomiya
-# Date            : ur my date uwu
-# Real Description: place to define groups of commands
+# Author				: G.M. Yongco #BeSomeoneWhoCanStandByShinomiya
+# Date					: ur my date uwu
+# Description			: Code that will impress u ;)
+# Actual Description	: for the motivation features of the bot
 # HEADERS ================================================================
 
 # discord stuff

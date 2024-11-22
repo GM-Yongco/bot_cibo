@@ -1,16 +1,15 @@
-# Description     : Code that will impress u ;)
-# Author          : G.M. Yongco #BeSomeoneWhoCanStandByShinomiya
-# Date            : ur my date uwu
+# Author				: G.M. Yongco #BeSomeoneWhoCanStandByShinomiya
+# Date					: ur my date uwu
+# Description			: Code that will impress u ;)
+# Actual Description	: class that hold all the restart, shutdown, and similar functionalities
 # HEADERS ================================================================
 
 # discord stuff
 import discord
 import discord.ext.commands
-from discord import app_commands
 
-
+# built in stuff
 import os
-import time
 import platform
 
 # ========================================================================

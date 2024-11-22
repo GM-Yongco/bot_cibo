@@ -5,5 +5,3 @@ make logging every 5 minutes
 
 make motivate me a datbase
 make weekly birthday thing from database
-
-fix disconnect timer

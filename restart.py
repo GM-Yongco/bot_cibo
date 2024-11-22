@@ -1,3 +1,9 @@
+# Author				: G.M. Yongco #BeSomeoneWhoCanStandByShinomiya
+# Date					: ur my date uwu
+# Description			: Code that will impress u ;)
+# Actual Description	: seprate/independent program that gets called to restart the bot
+# HEADERS ================================================================
+
 import os
 import time
 import platform
