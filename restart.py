@@ -8,7 +8,6 @@ import os
 import time
 import platform
 
-os.system("git pull main.py")
 print(f"starting in:")
 wait_seconds = 10
 for i in range(wait_seconds, 0, -1):
