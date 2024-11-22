@@ -21,7 +21,7 @@ class functionalityRestart():
 	
 	will_restart:bool = False
 
-	def check_os():
+	def check_os(self):
 		ret_val:str = "unknonwn_os"
 		if platform.system() == 'Windows':
 			ret_val = "windows"
@@ -29,7 +29,7 @@ class functionalityRestart():
 			ret_val = "linux"
 		elif platform.system() == 'Darwin':
 			ret_val = "macos"
-		print(f"current working operating system is {ret_val}")
+		print(f"current working operating system	 is {ret_val}")
 		return ret_val
 
 	def restart(self) -> None:
