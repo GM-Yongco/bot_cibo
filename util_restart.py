@@ -40,9 +40,9 @@ class functionalityRestart():
 			time.sleep(1)
 
 		operating_system:str = self.check_os()
-		if operating_system == "Windows":
+		if operating_system == "windows":
 			os.system("python main.py")
-		elif operating_system == "Linux":
+		elif operating_system == "linux":
 			os.system("python3 main.py")
 
 	# ========================================================================
