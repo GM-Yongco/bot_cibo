@@ -138,17 +138,6 @@ class DiscordBot():
 			except Exception as e:
 				await interaction.response.send_message(f"{e}")
 
-		@self.bot.tree.command(name = "shutdown", description = "shutsdown the bot")
-		async def shutdown(interaction: discord.Interaction):
-			print("command : shutdown ")
-			try:
-				await interaction.response.send_message("shutdown attempt")
-				await self.bot.close()
-			except Exception as e:
-				await interaction.response.send_message(f"{e}")
-
-		print("default bot commands")
-
 	# ====================================================================
 	# RUN
 	# ====================================================================

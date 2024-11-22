@@ -36,14 +36,26 @@ class functionalityRestart():
 		elif working_os == "linux":
 			os.system("python3 restart.py")
 
-	# ========================================================================
+	# ====================================================================
 
 	def define_commands_restart(self, bot:discord.ext.commands.bot.Bot, authorized_user_id:str) -> None:
-		
-		@bot.tree.command(name = "restart", description = "restarts the bot")
-		async def restart(interaction: discord.Interaction):
+		@bot.tree.command(name = "shutdown", description = "shutsdown the bot")
+		async def shutdown(interaction: discord.Interaction):
+			function_prefix:str = "command : shutdown"
 
-			
+			# checking credentials
+			if interaction.user.id == int(authorized_user_id):
+				print(f"{function_prefix} authorized")
+				await interaction.response.send_message("shutdown attempt")
+				await bot.close()
+			else:
+				await interaction.response.send_message("you dont have credentials for this bucko")
+				print(f"{function_prefix} not authorized")
+
+		# ================================================================
+
+		@bot.tree.command(name = "restart", description = "restarts the bot")
+		async def restart(interaction: discord.Interaction):			
 			function_prefix:str = "command : restart"
 
 			# checking credentials
@@ -56,7 +68,7 @@ class functionalityRestart():
 				await interaction.response.send_message("you dont have credentials for this bucko")
 				print(f"{function_prefix} not authorized")
 
-	# ========================================================================
+	# ====================================================================
 
 	def define_events_restart(self, bot:discord.ext.commands.bot.Bot) -> None:
 		@bot.event
@@ -67,3 +79,4 @@ class functionalityRestart():
 			if(self.will_restart == True):
 				print("initializing restart")
 				self.restart()
+		
