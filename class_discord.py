@@ -1,6 +1,7 @@
-# Author			: G.M. Yongco #BeSomeoneWhoCanStandByShinomiya
-# Date				: ur my date uwu
-# Description		: A template class to bstact away discord stuff
+# Author				: G.M. Yongco #BeSomeoneWhoCanStandByShinomiya
+# Date					: ur my date uwu
+# Description			: Code that will impress u ;)
+# Actual Description	: A template class to abstact away discord stuff
 # HEADERS ================================================================
 
 # discord
@@ -22,23 +23,36 @@ class DiscordBot():
 			LOG_CHANNEL_ID:str = ""
 		) -> None:
 
+		# ALL public variables should be here
 		self.TOKEN:str = TOKEN
 		self.LOG_CHANNEL_ID:str = LOG_CHANNEL_ID
-		self.initialization_functions:List[Callable] = []
+
+		self.user_ids:List[str] = []
 	
+		self.initialization_functions:List[Callable] = []
+
 		self.LOG_CHANNEL:discord.TextChannel
 		self.bot:discord.ext.commands.bot.Bot
+
+	# ====================================================================
+	# STANDARD CLASS FUNCTIONS
+	# ====================================================================
 
 	def __dict__(self)->dict:
 		ret_val:dict = {
 			"BOT_NAME" : str(self.bot.user), 
 			"LOG_CHANNEL_ID" : str(self.bot.get_channel(int(self.LOG_CHANNEL_ID))),
-			"initialization_functions" : []
+			"initialization_functions" : [],
+			"user_ids" : []
 		}
 
 		initialization_functions:List[str] = ret_val["initialization_functions"]
 		for functions in self.initialization_functions:
 			initialization_functions.append(functions.__name__)
+		user_ids:List[str] = ret_val["user_ids"]
+		for users in self.user_ids:
+			user_ids.append(users)
+			
 		print(f"function : __dict__ success")
 
 		return ret_val
@@ -60,6 +74,10 @@ class DiscordBot():
 
 			self.TOKEN:str = json_details["bot_tokens"]["Eunus"]
 			self.LOG_CHANNEL_ID:str = json_details["log_channel_id"]
+
+			self.user_ids.append(json_details["user_ids"]["Veee"])
+			self.user_ids.append(json_details["user_ids"]["ViDeinde"])
+
 			print(f"function : get_references success")
 		except Exception as e:
 			print(f"function : get_references failed")
@@ -112,21 +130,20 @@ class DiscordBot():
 	# ====================================================================
 
 	def define_bot_commands(self) -> None:
-		@self.bot.tree.command(name = "greet_me", description = "greets you plus more")
-		@app_commands.describe(message = "str : additional greeting")
-		async def greet_me(interaction: discord.Interaction, message:str = ""):
-			print("command : greet_me ")
-			try:
-				await interaction.response.send_message(f"get greeted :P\n{message}")
-			except Exception as e:
-				await interaction.response.send_message(f"{e}")
-
-		
 		@self.bot.tree.command(name = "give_deets", description = "gives attributes of the bot")
 		async def give_deets(interaction: discord.Interaction):
 			print("command : give_deets ")
 			try:
 				await interaction.response.send_message(str(self.__str__()))
+			except Exception as e:
+				await interaction.response.send_message(f"{e}")
+
+		@self.bot.tree.command(name = "shutdown", description = "shutsdown the bot")
+		async def shutdown(interaction: discord.Interaction):
+			print("command : shutdown ")
+			try:
+				await interaction.response.send_message("shutdown attempt")
+				await self.bot.close()
 			except Exception as e:
 				await interaction.response.send_message(f"{e}")
 
@@ -142,18 +159,17 @@ class DiscordBot():
 		self.get_references()
 		self.define_bot()
 
-		# can be overwritten
-		# will be executed first so the new events will override the old ones
-		self.initialization_functions.insert(0, self.define_bot_events)
-		self.initialization_functions.insert(0, self.define_bot_commands)
+		# order shouldnt matter here
+		self.initialization_functions.append(self.define_bot_events)
+		self.initialization_functions.append(self.define_bot_commands)
 
-		# make sure the functions here are okay before the bot is ready/connected
+		# makes sure the functions here are okay before the bot is ready/connected
 		for functions in self.initialization_functions:
 			try:
 				functions()
-				print(f"initialization_functions : {functions.__name__} - success")
+				print(f"initializing_function - {"SUCCESS":8} : {functions.__name__}")
 			except Exception as e:
-				print(f"initialization_functions : {functions.__name__} - ERROR\n\t{e}")
+				print(f"initializing_function - {"ERROR":8} : {functions.__name__}\n\t{e}")
 
 		self.bot.run(self.TOKEN)
 

@@ -11,6 +11,6 @@ from class_Eunus import EunusBot
 
 if __name__ == '__main__':
 	bot:EunusBot = EunusBot()
-	bot.initialization_functions.append(bot.define_on_ready)
-	bot.initialization_functions.append(bot.define_on_disconnect)
+	bot.initialization_functions.append(bot.define_more_bot_commands)
+	bot.initialization_functions.append(bot.define_more_bot_events)
 	bot.run()
