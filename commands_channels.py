@@ -1,7 +1,7 @@
 # Author			: G.M. Yongco #BeSomeoneWhoCanStandByShinomiya
 # Date				: ur my date uwu
 # Description		: A template class to abstract away discord stuff
-# Real Description	: all channel based commands
+# Real Description	: all date based commands
 # HEADERS ================================================================
 
 import discord
