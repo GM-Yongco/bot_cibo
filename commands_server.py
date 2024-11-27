@@ -42,11 +42,13 @@ def define_commands_server(bot:discord.ext.commands.bot.Bot,  authorized_user_id
 
 			ret_val:str = f"{'Local':8}IP address: {ip_local}"
 			ret_val += "\n" + f"{'Public':8}IP address: {ip_public}"
-
-			await interaction.response.send_message(f"```{ret_val}```")
-			print(f"{function_prefix} authorized")
+			
+			await interaction.user.send(f"```{ret_val}```")
+			function_prefix += " authorized"
+			await interaction.response.send_message(f"```addresses sent to dms```")
 		else:
-			await interaction.response.send_message("you dont have credentials for this bucko")
-			print(f"{function_prefix} not authorized")
+			function_prefix += " not authorized"
+			print(function_prefix)
+			await interaction.response.send_message(f"```you dont have credentials for this bucko```")
 
 		

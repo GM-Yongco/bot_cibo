@@ -22,7 +22,9 @@ def define_commands_channels(bot:discord.ext.commands.bot.Bot, authorized_user_i
 		if interaction.user.id == int(authorized_user_id):
 			await interaction.channel.clone()
 			await interaction.channel.delete()
-			print(f"{function_prefix} authorized")
+			function_prefix += " authorized"
 		else:
-			await interaction.response.send_message("you dont have credentials for this bucko")
-			print(f"{function_prefix} not authorized")
+			await interaction.response.send_message(f"```you dont have credentials for this bucko```")
+			function_prefix += " not authorized"
+			
+		print(function_prefix)
