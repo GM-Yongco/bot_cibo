@@ -48,7 +48,6 @@ def define_commands_server(bot:discord.ext.commands.bot.Bot,  authorized_user_id
 			await interaction.response.send_message(f"```addresses sent to dms```")
 		else:
 			function_prefix += " not authorized"
-			print(function_prefix)
 			await interaction.response.send_message(f"```you dont have credentials for this bucko```")
 
-		
+		print(function_prefix)
