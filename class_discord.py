@@ -71,7 +71,7 @@ class DiscordBot():
 			json_details:dict = json.load(file)
 			file.close()
 
-			self.TOKEN:str = json_details["bot_tokens"]["Eunus"]
+			self.TOKEN:str = json_details["bot_tokens"]["Vessel"]
 			self.LOG_CHANNEL_ID:str = json_details["log_channel_id"]
 
 			self.user_ids.append(json_details["user_ids"]["Veee"])
@@ -155,9 +155,9 @@ class DiscordBot():
 		for functions in self.initialization_functions:
 			try:
 				functions()
-				print(f"initializing_function - {"SUCCESS":8} : {functions.__name__}")
+				print(f"initializing_function - {'SUCCESS':8} : {functions.__name__}")
 			except Exception as e:
-				print(f"initializing_function - {"ERROR":8} : {functions.__name__}\n\t{e}")
+				print(f"initializing_function - {'ERROR':8} : {functions.__name__}\n\t{e}")
 
 		self.bot.run(self.TOKEN)
 
