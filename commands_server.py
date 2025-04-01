@@ -21,7 +21,6 @@ def define_commands_server(bot:discord.ext.commands.bot.Bot,  authorized_user_id
 
 		function_prefix:str = "command : get_server_ip"
 
-
 		# checking credentials
 		if interaction.user.id == int(authorized_user_id):
 			ip_local:str = ":DDD"
