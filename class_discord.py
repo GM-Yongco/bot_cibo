@@ -71,7 +71,7 @@ class DiscordBot():
 			json_details:dict = json.load(file)
 			file.close()
 
-			self.TOKEN:str = json_details["bot_tokens"]["Vessel"]
+			self.TOKEN:str = json_details["bot_tokens"]["Eunus"]
 			self.LOG_CHANNEL_ID:str = json_details["log_channel_id"]
 
 			self.user_ids.append(json_details["user_ids"]["Veee"])
