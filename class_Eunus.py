@@ -3,11 +3,13 @@
 # Date            : ur my date uwu
 # HEADERS ================================================================
 
+import asyncio
+
 from class_discord import *
 
 from util_restart import functionalityRestart
-from utils import section
-from functions_daily import bot_time_log
+from util_routine import bot_task_cycle
+from utils_misc import section
 from commands_motivate import define_commands_motivate
 from commands_channels import define_commands_channels
 from commands_dates import define_commands_dates
@@ -44,8 +46,8 @@ class EunusBot(DiscordBot):
 			await self.LOG_CHANNEL.send(f"```{message}```")
 
 			# timed tasks for bot at startup
-			# bot_log = asyncio.create_task(bot_time_log(channel = self.LOG_CHANNEL, interval_seconds = 300))
-			# await asyncio.gather(bot_log)
+			bot_log = asyncio.create_task(bot_task_cycle(channel = self.LOG_CHANNEL, interval_seconds = 30))
+			await asyncio.gather(bot_log)
 		
 		self.functionality_restart.define_events_restart(self.bot)
 
