@@ -9,7 +9,7 @@ import time
 import platform
 
 print(f"starting in:")
-wait_seconds = 10
+wait_seconds = 5
 for i in range(wait_seconds, 0, -1):
     print(i)
     time.sleep(1)

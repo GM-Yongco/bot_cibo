@@ -7,3 +7,4 @@ _.py
 test.py
 
 *.json
+log*

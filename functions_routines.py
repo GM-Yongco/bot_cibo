@@ -12,13 +12,7 @@ import discord.ext.commands
 import asyncio
 import datetime
 
-from utils_misc import section
-
-# GLOBAL VARIABLES =======================================================
-
-MINUTE_SECONDS:int 	= 60
-HOUR_SECONDS:int 	= MINUTE_SECONDS * 60
-DAY_SECONDS:int 	= HOUR_SECONDS * 24
+from util_misc import log_write
 
 # ========================================================================
 # FUNCTIONS 
@@ -30,7 +24,7 @@ def cycle_message_date_format(
 		current_date_value:int = 1)->str:
 	return f"\n\t{date_type:10} update {previous_date_value:05} -> {current_date_value:05}"
 
-async def bot_task_cycle(channel:discord.TextChannel, interval_seconds:int = MINUTE_SECONDS):
+async def bot_task_cycle(channel:discord.TextChannel, interval_seconds:int = 60):
 	cycle_count:int = 0
 
 	previous_year:int = -1
@@ -42,7 +36,7 @@ async def bot_task_cycle(channel:discord.TextChannel, interval_seconds:int = MIN
 
 	while(True):
 		time_now:datetime.datetime = datetime.datetime.now()
-		cycle_message:str = f"cycle: {cycle_count}"
+		cycle_message:str = f"cycle: {cycle_count:06}"
 
 		# ==================================================
 		# put the tasks on the given date type
@@ -66,7 +60,7 @@ async def bot_task_cycle(channel:discord.TextChannel, interval_seconds:int = MIN
 		if time_now.hour != previous_hour:
 			cycle_message += cycle_message_date_format("hour", previous_hour, time_now.hour)
 			previous_hour = time_now.hour
-			await channel.send(f"```I am alive\n{cycle_message}```")
+			await channel.send(f"```I am alive: {time_now.strftime('%Y-%m-%d %H:%M:%S')}```")
 
 		if time_now.minute != previous_minute:
 			cycle_message += cycle_message_date_format("minute", previous_minute, time_now.minute)
@@ -74,15 +68,6 @@ async def bot_task_cycle(channel:discord.TextChannel, interval_seconds:int = MIN
 
 		# ==================================================
 
-		print(cycle_message)
+		log_write(file_name="logs_routines.csv", category="cycle", details=cycle_message)
 		cycle_count += 1
 		await asyncio.sleep(interval_seconds)
-
-# ========================================================================
-# TEST 
-# ========================================================================
-
-if __name__ == '__main__':
-	section("START")
-	
-	section("END")
