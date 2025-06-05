@@ -1,25 +1,27 @@
-# Description     : Code that will impress u ;)
-# Author          : G.M. Yongco #BeSomeoneWhoCanStandByShinomiya
-# Date            : ur my date uwu
+# Author				: G.M. Yongco #BeSomeoneWhoCanStandByShinomiya
+# Date					: ur my date uwu
+# Description			: Code that will impress u ;)
+# Actual Description	: essence of what makes cibo is
+#	basically all the compiled features of cibo
 # HEADERS ================================================================
 
 import asyncio
 
 from class_discord import *
+from util_misc import section
 
 from functions_routines import bot_task_cycle
 from util_restart import functionalityRestart
-from util_misc import section
 from commands_motivate import define_commands_motivate
 from commands_channels import define_commands_channels
-from commands_dates import define_commands_dates
 from commands_server import define_commands_server
+from commands_dates import define_commands_dates
 
 # ========================================================================
 # NEW CLASS
 # ========================================================================
 
-class EunusBot(DiscordBot):
+class Cibo(DiscordBot):
 	
 	# ====================================================================
 	# ADDITIONAL CLASS VARIABLES
