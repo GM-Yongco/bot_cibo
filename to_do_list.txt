@@ -1,2 +1,4 @@
 make motivate me a datbase
 make weekly birthday thing from database
+
+make a sleep thingy tracker
