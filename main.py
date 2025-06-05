@@ -4,14 +4,14 @@
 # Actual Description	: main file that runs the bot and appends to initialization functions
 # HEADERS ================================================================
 
-from class_Eunus import EunusBot
+from class_cibo import Cibo
 
 # ========================================================================
 # TEST 
 # ========================================================================
 
 if __name__ == '__main__':
-	bot:EunusBot = EunusBot()
+	bot:Cibo = Cibo()
 	bot.initialization_functions.append(bot.define_more_bot_commands)
 	bot.initialization_functions.append(bot.define_more_bot_events)
 	bot.run()
