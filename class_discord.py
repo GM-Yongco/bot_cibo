@@ -108,30 +108,15 @@ class DiscordBot():
 		@self.bot.event
 		async def on_connect():
 			print(f"{self.bot.user} is now connected")
-		
-		@self.bot.event
-		async def on_ready():
-			# get channel can only be used after the bot has been ready
-			self.define_log_channel() 
-
-			# synch the current commands
-			synced:List[discord.app_commands.models.AppCommand] = await self.bot.tree.sync()
-			print(f"Synched {len(synced)} commands:")
-			for index, command in enumerate(synced):
-				print(f"{index + 1:3} : {command}")
-
-			# ready
-			print(f"{self.bot.user} is now ready")
-			print("-" * 50)
 
 	# ====================================================================
 	# DISCORD COMMANDS
 	# ====================================================================
 
 	def define_bot_commands(self) -> None:
-		@self.bot.tree.command(name = "give_deets", description = "gives attributes of the bot")
-		async def give_deets(interaction: discord.Interaction):
-			print("command : give_deets ")
+		@self.bot.tree.command(name = "get_deets", description = "gives attributes of the bot")
+		async def get_deets(interaction: discord.Interaction):
+			print("command : get_deets")
 			try:
 				await interaction.response.send_message(str(self.__str__()))
 			except Exception as e:
