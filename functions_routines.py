@@ -24,9 +24,10 @@ def cycle_message_date_format(
 		current_date_value:int = 1)->str:
 	return f"\n\t{date_type:10} update {previous_date_value:05} -> {current_date_value:05}"
 
-async def bot_task_cycle(channel:discord.TextChannel, interval_seconds:int = 60):
+async def bot_task_cycle(log_channel:discord.TextChannel, interval_seconds:int = 60):
 	cycle_count:int = 0
 
+	# time updates
 	previous_year:int = -1
 	previous_month:int = -1
 	previous_week:int = -1
@@ -34,12 +35,16 @@ async def bot_task_cycle(channel:discord.TextChannel, interval_seconds:int = 60)
 	previous_hour:int = -1
 	previous_minute:int = -1
 
+	# task updates
+	last_done_daily_report:int = -1
+
 	while(True):
 		time_now:datetime.datetime = datetime.datetime.now()
 		cycle_message:str = f"cycle: {cycle_count:06}"
 
 		# ==================================================
 		# put the tasks on the given date type
+
 
 		if time_now.year != previous_year:
 			cycle_message += cycle_message_date_format("year", previous_year, time_now.year)
@@ -60,7 +65,7 @@ async def bot_task_cycle(channel:discord.TextChannel, interval_seconds:int = 60)
 		if time_now.hour != previous_hour:
 			cycle_message += cycle_message_date_format("hour", previous_hour, time_now.hour)
 			previous_hour = time_now.hour
-			await channel.send(f"```I am alive: {time_now.strftime('%Y-%m-%d %H:%M:%S')}```")
+			await log_channel.send(f"```I am alive: {time_now.strftime('%Y-%m-%d %H:%M:%S')}```")
 
 		if time_now.minute != previous_minute:
 			cycle_message += cycle_message_date_format("minute", previous_minute, time_now.minute)
