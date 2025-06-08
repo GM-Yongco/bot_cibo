@@ -36,7 +36,7 @@ async def bot_task_cycle(log_channel:discord.TextChannel, interval_seconds:int =
 	previous_minute:int = -1
 
 	# task updates
-	last_done_daily_report:int = -1
+	previous_day_daily_report:int = -1
 
 	while(True):
 		time_now:datetime.datetime = datetime.datetime.now()
@@ -66,6 +66,10 @@ async def bot_task_cycle(log_channel:discord.TextChannel, interval_seconds:int =
 			cycle_message += cycle_message_date_format("hour", previous_hour, time_now.hour)
 			previous_hour = time_now.hour
 			await log_channel.send(f"```I am alive: {time_now.strftime('%Y-%m-%d %H:%M:%S')}```")
+
+			if (time_now.hour > 10) and (time_now.day != previous_day_daily_report):
+				previous_day_daily_report = time_now.day
+				# add daily report functionality here
 
 		if time_now.minute != previous_minute:
 			cycle_message += cycle_message_date_format("minute", previous_minute, time_now.minute)
