@@ -48,7 +48,7 @@ class Cibo(DiscordBot):
 			await self.LOG_CHANNEL.send(f"```{message}```")
 
 			# timed tasks for bot at startup
-			bot_log = asyncio.create_task(bot_task_cycle(channel = self.LOG_CHANNEL, interval_seconds = 30))
+			bot_log = asyncio.create_task(bot_task_cycle(log_channel = self.LOG_CHANNEL, interval_seconds = 30))
 			await asyncio.gather(bot_log)
 		
 		self.functionality_restart.define_events_restart(self.bot)
