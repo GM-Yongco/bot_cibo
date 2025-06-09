@@ -6,6 +6,7 @@ tempCodeRunnerFile.py
 _.py
 test.py
 
+*.env
 *.json
 log*
 secrets.py

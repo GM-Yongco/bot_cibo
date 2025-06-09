@@ -1,4 +1,9 @@
-make motivate me a datbase
-make weekly birthday thing from database
+DONE    server debian
+DONE    setup github there
+DONE    cibo live there
 
-make a sleep thingy tracker
+motivate me a datbase
+a sleep thingy tracker
+start using a .env file
+birthday database
+weekly birthday thing from database
