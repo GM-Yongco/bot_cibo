@@ -10,3 +10,4 @@ test.py
 *.json
 log*
 secrets.py
+*sleep_log.db

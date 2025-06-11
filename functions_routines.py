@@ -13,6 +13,7 @@ import asyncio
 import datetime
 
 from util_misc import log_write
+from utils_log_sleep import READ_last_2
 
 # ========================================================================
 # FUNCTIONS 
@@ -73,8 +74,11 @@ async def bot_task_cycle(log_channel:discord.TextChannel, interval_seconds:int =
 
 			if (time_now.hour >= 10) and (time_now.day != previous_day_daily_report):
 				previous_day_daily_report = time_now.day
-				await log_channel.send(f"```GOOD MORNING\nnew day, new you, lets get on the grind.\nremember you are human and have both material and social needs to work on ```")
-				# add daily report functionality here
+
+				message:str = ""
+				message += "GOOD MORNING\nnew day, new you, lets get on the grind.\nremember you are human and have both material and social needs to work on"
+				message += f"\n{READ_last_2()}"
+				await log_channel.send(f"```{message}```")
 
 		# ==================================================
 
