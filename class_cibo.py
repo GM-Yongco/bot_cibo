@@ -57,7 +57,6 @@ class Cibo(DiscordBot):
 	# ====================================================================
 
 	def define_more_bot_commands(self)->None:
-		self.functionality_restart.define_commands_restart(self.bot, self.user_ids[0])
 		define_commands_dates(self.bot)
 		define_commands_sleep(self.bot)
 		define_commands_motivate(self.bot)
@@ -65,3 +64,4 @@ class Cibo(DiscordBot):
 		define_commands_server(self.bot, self.user_ids[0])
 		define_commands_channels(self.bot, self.user_ids[0])
 		
+		self.functionality_restart.define_commands_restart(self.bot, self.user_ids[0])
