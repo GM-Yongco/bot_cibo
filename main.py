@@ -12,6 +12,7 @@ from class_cibo import Cibo
 
 if __name__ == '__main__':
 	bot:Cibo = Cibo()
-	bot.initialization_functions.append(bot.define_more_bot_commands)
-	bot.initialization_functions.append(bot.define_more_bot_events)
+	bot.functions_initialization.append(bot.define_more_bot_commands)
+	bot.functions_initialization.append(bot.define_more_bot_events)
+	bot.functions_on_ready.append(bot.define_more_on_ready_functions)
 	bot.run()

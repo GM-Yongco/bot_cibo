@@ -28,7 +28,7 @@ def define_commands_sleep(bot:discord.ext.commands.bot.Bot) -> None:
 		function_prefix:str = "command : log_sleep"
 		print(f"{function_prefix}")
 		CREATE_sleep_log(hour_sleep_start=hour_sleep_start, hour_sleep_end=hour_sleep_end)
-		await interaction.response.send_message("ok")
+		await interaction.response.send_message("sleep time logged")
 
 	@bot.tree.command(name = 'get_sleep_stats', description = "gets the entire sleep database")
 	async def get_stats(interaction: discord.Interaction):

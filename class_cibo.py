@@ -33,25 +33,15 @@ class Cibo(DiscordBot):
 	# ADDITIONAL CLASS FUNCTIONALITY
 	# ====================================================================
 
+	async def define_more_on_ready_functions(self)->None:
+		bot_log:asyncio.Task = asyncio.create_task(
+			bot_task_cycle(self.bot)
+			)
+		await asyncio.gather(bot_log)
+
+	# ====================================================================
+
 	def define_more_bot_events(self) -> None:
-		@self.bot.event
-		async def on_ready():
-			self.define_log_channel() 
-
-			synced:List[discord.app_commands.models.AppCommand] = await self.bot.tree.sync()
-			print(f"Synched {len(synced)} commands:")
-			for index, command in enumerate(synced):
-				print(f"{index + 1:3} : {command}")
-
-			# announcing ones Awakening
-			message:str = f"{self.bot.user} is now ready"
-			section(message)
-			await self.LOG_CHANNEL.send(f"```{message}```")
-
-			# timed tasks for bot at startup
-			bot_log = asyncio.create_task(bot_task_cycle(log_channel = self.LOG_CHANNEL, interval_seconds = 30))
-			await asyncio.gather(bot_log)
-		
 		self.functionality_restart.define_events_restart(self.bot)
 
 	# ====================================================================
@@ -61,7 +51,18 @@ class Cibo(DiscordBot):
 		define_commands_sleep(self.bot)
 		define_commands_motivate(self.bot)
 
-		define_commands_server(self.bot, self.user_ids[0])
-		define_commands_channels(self.bot, self.user_ids[0])
+		define_commands_server(self.bot)
+		define_commands_channels(self.bot)
 		
-		self.functionality_restart.define_commands_restart(self.bot, self.user_ids[0])
+		self.functionality_restart.define_commands_restart(self.bot)
+
+# ========================================================================
+# TEST 
+# ========================================================================
+
+if __name__ == '__main__':
+	bot:Cibo = Cibo()
+	bot.functions_initialization.append(bot.define_more_bot_commands)
+	bot.functions_initialization.append(bot.define_more_bot_events)
+	bot.functions_on_ready.append(bot.define_more_on_ready_functions)
+	bot.run()

@@ -12,6 +12,10 @@ import discord.ext.commands
 import os
 import platform
 
+# for bot tokens and ids and such things that need to be hidden from github
+from dotenv import load_dotenv
+import os
+
 # ========================================================================
 # FUNCTIONS
 # ========================================================================
@@ -37,19 +41,7 @@ class functionalityRestart():
 
 	# ====================================================================
 
-	def define_commands_restart(self, bot:discord.ext.commands.bot.Bot, authorized_user_id:str) -> None:
-		@bot.tree.command(name = "shutdown", description = "shutsdown the bot")
-		async def shutdown(interaction: discord.Interaction):
-			function_prefix:str = "command : shutdown"
-
-			# checking credentials
-			if interaction.user.id == int(authorized_user_id):
-				print(f"{function_prefix} authorized")
-				await interaction.response.send_message("shutdown attempt")
-				await bot.close()
-			else:
-				await interaction.response.send_message("you dont have credentials for this bucko")
-				print(f"{function_prefix} not authorized")
+	def define_commands_restart(self, bot:discord.ext.commands.bot.Bot) -> None:
 
 		# ================================================================
 
@@ -58,7 +50,7 @@ class functionalityRestart():
 			function_prefix:str = "command : restart"
 
 			# checking credentials
-			if interaction.user.id == int(authorized_user_id):
+			if interaction.user.id == int(os.getenv("ID_USER_01")) or interaction.user.id == int(os.getenv("ID_USER_02")):
 				print(f"{function_prefix} authorized")
 				await interaction.response.send_message("restarting in a few seconds")
 				self.will_restart = True
