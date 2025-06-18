@@ -90,8 +90,9 @@ async def bot_task_cycle(bot:discord.ext.commands.bot.Bot):
 
 				message:str = ""
 				message += "GOOD MORNING\nnew day, new you, lets get on the grind.\nremember you are human and have both material and social needs to work on"
-				message += f"\n{READ_last_2()}"
+				message += f"\n\n{READ_last_2()}"
 				await USER_01.send(f"```{message}```")
+				await USER_02.send(f"```{message}```")
 
 		# ==================================================
 
