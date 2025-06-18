@@ -17,7 +17,7 @@ from utils_log_sleep import CREATE_sleep_log, READ_sleep_log, READ_last_2
 
 def define_commands_sleep(bot:discord.ext.commands.bot.Bot) -> None:
 
-	@bot.tree.command(name = 'log_sleep', description = "logs sleep")
+	@bot.tree.command(name = 'log_sleep', description = "logs sleep (use 24 hour format)")
 	@app_commands.describe(hour_sleep_start = 'int : 24-hour format')
 	@app_commands.describe(hour_sleep_end = 'int : 24-hour format')
 	async def log_sleep(
