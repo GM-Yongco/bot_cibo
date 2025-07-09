@@ -1,9 +1,16 @@
 DONE    server debian
 DONE    setup github there
 DONE    cibo live there
+DONE    start using a .env file
+DONE    a sleep thingy tracker
+
+make databse diagram
 
 motivate me a datbase
-a sleep thingy tracker
-start using a .env file
 birthday database
 weekly birthday thing from database
+
+data base migration
+    make the log stuff witb discord_ids
+    make the sleep_logs_ids be randomized?
+    perform database migration
