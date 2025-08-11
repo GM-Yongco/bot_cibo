@@ -89,7 +89,7 @@ def CREATE_sleep_log(
 	SQL_execute(INSERT_sleep_log)
 
 def READ_sleep_log()->str:
-	SQL_command = "SELECT * FROM sleep_log"
+	SQL_command = "SELECT * FROM sleep_log LIMIT 20"
 	rows:list = SQL_fetch(SQL_command)
 	ret_val: str = "\n".join(", ".join(map(str, row)) for row in rows) 
 	return ret_val
