@@ -3,14 +3,13 @@ DONE    setup github there
 DONE    cibo live there
 DONE    start using a .env file
 DONE    a sleep thingy tracker
+DONE    make databse diagram for my peeps
 
-make databse diagram
 
-motivate me a datbase
-birthday database
-weekly birthday thing from database
+make peeps database
+make peeps api
+make peeps ui diagram
+make peeps front end
+make peeps test
 
-data base migration
-    make the log stuff witb discord_ids
-    make the sleep_logs_ids be randomized?
-    perform database migration
+make an api for discord actions
