@@ -5,7 +5,6 @@ DONE    start using a .env file
 DONE    a sleep thingy tracker
 DONE    make databse diagram for my peeps
 
-
 make peeps database
 make peeps api
 make peeps ui diagram
@@ -13,3 +12,8 @@ make peeps front end
 make peeps test
 
 make an api for discord actions
+
+the bot gets stuck in the on ready functions
+    specifically the task cycle one
+    idk how to make it just be async and not wait forit
+    bot works fine otherwise
