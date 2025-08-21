@@ -55,11 +55,9 @@ class DiscordBot():
 		for functions in self.functions_on_ready:
 			functions_on_ready.append(functions.__name__)
 					
-		print(f"function : __dict__ success")
 		return ret_val
 	
 	def __str__(self)->str:
-		print(f"function : __str__ success")
 		return str(json.dumps(obj = self.__dict__(), indent = 4))
 
 	# ====================================================================
@@ -67,14 +65,9 @@ class DiscordBot():
 	# ====================================================================
 
 	def get_references(self):
-		try:
-			load_dotenv()
-			self.TOKEN:str = os.getenv("TOKEN")
-			self.LOG_CHANNEL_ID:str = os.getenv("ID_CHANNEL_LOG")
-			print(f"function : get_references success")
-		except Exception as e:
-			print(f"function : get_references failed")
-			print(e)
+		load_dotenv()
+		self.TOKEN:str = os.getenv("TOKEN")
+		self.LOG_CHANNEL_ID:str = os.getenv("ID_CHANNEL_LOG")
 
 	# ====================================================================
 	# DISCORD FUNCTIONS
