@@ -93,11 +93,7 @@ class DiscordBot():
 	# ====================================================================
 
 	def define_log_channel(self)->None:
-		try:
-			self.LOG_CHANNEL = self.bot.get_channel(int(self.LOG_CHANNEL_ID))
-			print(f"function : define_log_channel success")
-		except Exception as e:
-			print(f"function : define_log_channel\n{e}")
+		self.LOG_CHANNEL = self.bot.get_channel(int(self.LOG_CHANNEL_ID))
 
 	async def synch_commands(self)->None:
 		# synch the current commands
