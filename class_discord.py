@@ -115,14 +115,16 @@ class DiscordBot():
 
 			for function in self.functions_on_ready:
 				try:
-					print(f"initializing_function - {'START':8} : {function.__name__}")
+					print(f"{'initializing_on_ready_function':36} - {'START':8} : {function.__name__}")
 					if inspect.iscoroutinefunction(function):
 						await function()
 					else:
 						function()
-					print(f"initializing_function - {'SUCCESS':8} : {function.__name__}")
+					print(f"{'initializing_on_ready_function':36} - {'SUCCESS':8} : {function.__name__}")
 				except Exception as e:
-					print(f"initializing_function - {'ERROR':8} : {function.__name__}\n\t{e}")
+					print(f"{'initializing_on_ready_function':36} - {'ERROR':8} : {function.__name__}\n\t{e}")
+			else:
+				print(f"{'all_on_ready_function':36} - {'SUCCESS':8}")
 
 			# ready
 			message:str = f"{self.bot.user} is now ready"
@@ -173,10 +175,11 @@ class DiscordBot():
 		for function in self.functions_initialization:
 			try:
 				function()
-				print(f"initializing_function - {'SUCCESS':8} : {function.__name__}")
+				print(f"{'initializing_function':36} - {'SUCCESS':8} : {function.__name__}")
 			except Exception as e:
-				print(f"initializing_function - {'ERROR':8} : {function.__name__}\n\t{e}")
-
+				print(f"{'initializing_function':36} - {'ERROR':8} : {function.__name__}\n\t{e}")
+		else:
+			print(f"{'all_pre_ready_function':36} - {'SUCCESS':8}")
 
 		self.bot.run(self.TOKEN)
 
