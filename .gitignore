@@ -1,13 +1,18 @@
 __pycache__
-./.vscode
 settings.json
+./.vscode
 tempCodeRunnerFile.py
-
+*.code-workspace
 _.py
-test.py
+
+*.png
+*.jpg
+*.jpeg
+
+temp_*
+temp.*
+secret*
 
 *.env
-*.json
-log*
-secrets.py
-*sleep_log.db
+*.db
+*.exe
