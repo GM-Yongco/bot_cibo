@@ -16,7 +16,7 @@ from util_misc import section
 # FUNCTIONS 
 # ========================================================================
 
-DB_FILE:str = "REFERENCES\sleep_log.db"
+DB_FILE:str = r"REFERENCES/sleep_log.db"
 def SQL_execute(SQL_command:str) -> bool:
 	is_executed_just_fine = False
 
