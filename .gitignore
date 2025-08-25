@@ -11,6 +11,7 @@ _.py
 
 temp_*
 temp.*
+logs*
 secret*
 
 *.env
