@@ -12,8 +12,6 @@ import discord.ext.commands
 import os
 import platform
 
-# for bot tokens and ids and such things that need to be hidden from github
-from dotenv import load_dotenv
 import os
 
 # ========================================================================
