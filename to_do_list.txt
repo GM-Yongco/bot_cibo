@@ -4,9 +4,12 @@ DONE    cibo live there
 DONE    start using a .env file
 DONE    a sleep thingy tracker
 DONE    make databse diagram for my peeps
+DONE    make peeps database
+DONE    transform sleep to db and api
+DONE    make peeps api
 
-make peeps database
-make peeps api
+transform logs into db and api
+
 make peeps ui diagram
 make peeps front end
 make peeps test
