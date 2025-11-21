@@ -13,7 +13,7 @@ import asyncio
 import datetime
 
 from util_misc import log_write
-from utils_log_sleep import READ_last_2
+from functions_sleep import sleep_get_status
 
 # for bot tokens and ids and such things that need to be hidden from github
 from dotenv import load_dotenv
@@ -90,7 +90,7 @@ async def bot_task_cycle(bot:discord.ext.commands.bot.Bot):
 
 				message:str = ""
 				message += "GOOD MORNING\nnew day, new you, lets get on the grind.\nremember you are human and have both material and social needs to work on"
-				message += f"\n\n{READ_last_2()}"
+				message += f"\n\n{sleep_get_status()}"
 				await USER_01.send(f"```{message}```")
 				await USER_02.send(f"```{message}```")
 
