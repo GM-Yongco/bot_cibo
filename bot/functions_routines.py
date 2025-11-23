@@ -16,10 +16,10 @@ import datetime
 from dotenv import load_dotenv
 import os
 
+# for functions to use
 from util_misc import log_write
 from functions_sleep import sleep_get_status
 from functions_peeps import peeps_get_birthdays
-
 
 # ========================================================================
 # FUNCTIONS 
