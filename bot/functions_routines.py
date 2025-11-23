@@ -12,12 +12,14 @@ import discord.ext.commands
 import asyncio
 import datetime
 
-from util_misc import log_write
-from functions_sleep import sleep_get_status
-
 # for bot tokens and ids and such things that need to be hidden from github
 from dotenv import load_dotenv
 import os
+
+from util_misc import log_write
+from functions_sleep import sleep_get_status
+from functions_peeps import peeps_get_birthdays
+
 
 # ========================================================================
 # FUNCTIONS 
@@ -71,6 +73,11 @@ async def bot_task_cycle(bot:discord.ext.commands.bot.Bot):
 		if time_now.isocalendar()[1] != previous_week:
 			cycle_message += cycle_message_date_format("week", previous_week, time_now.isocalendar()[1])
 			previous_week = time_now.isocalendar()[1]
+
+			message:str = ""
+			message += f"{peeps_get_birthdays()}"
+			await USER_01.send(f"```{message}```")
+			await USER_02.send(f"```{message}```")
 
 		if time_now.day != previous_day:
 			cycle_message += cycle_message_date_format("day", previous_day, time_now.day)

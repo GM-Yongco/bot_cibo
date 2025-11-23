@@ -39,6 +39,6 @@ def peeps_get_birthdays() -> str:
 	)
 	ret_val:str = ""
 	for row in request.json():
-		ret_val += f"{row[0]:15}{row[1]:15}|{row[2]}\n"
+		ret_val += f"{row[0]:10}{row[1]:10}|{row[2]}\n"
 	ret_val.strip("\n")
 	return ret_val
