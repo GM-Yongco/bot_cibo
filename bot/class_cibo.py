@@ -17,6 +17,7 @@ from commands_channels import define_commands_channels
 from commands_server import define_commands_server
 from commands_dates import define_commands_dates
 from commands_sleep import define_commands_sleep
+from commands_peeps import define_commands_peeps
 
 # ========================================================================
 # NEW CLASS
@@ -49,6 +50,7 @@ class Cibo(DiscordBot):
 	def define_more_bot_commands(self)->None:
 		define_commands_dates(self.bot)
 		define_commands_sleep(self.bot)
+		define_commands_peeps(self.bot)
 		define_commands_motivate(self.bot)
 
 		define_commands_server(self.bot)
